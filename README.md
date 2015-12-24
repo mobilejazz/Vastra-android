@@ -1,12 +1,51 @@
 Vastra
 =============
 
-To be defined
+Vastra is a library that helps to validate objects applying different strategy validations.
 
 Usage
 -----
 
-To be defined
+*For a working implementation of this project see the `sample/` folder.*
+
+1. Create the strategy instances that you want to validate your objects.
+
+    ```java
+
+    ReachabilityValidationStrategy reachabilityValidationStrategy = new ReachabilityValidationStrategy(getApplicationContext());
+
+    TimestampValidationStrategy  timestampValidationStrategy = new TimestampValidationStrategy();
+    
+    List<ValidationStrategy> strategies = Arrays.asList(reachabilityValidationStrategy,
+                timestampValidationStrategy);
+    ```
+
+2. Create the ValidationService object to start to validate the objects
+
+    ```java
+    Vastra vastra = Vastra.with(strategies).build();
+    ValidationService validationService = vastra.validationService();
+    ```
+
+3. ValidationService instance contains the isValid(T object) method to make the validations.
+
+    ```java
+    // Example of user object that is valid 5 seconds
+    final User user = new User();
+    user.setId(1);
+    user.setName("Jose Luis Franconetti Olmedo");
+    user.setLastUpdate(new Date(System.currentTimeMillis()));
+
+    // Check if the user is valid
+    boolean isValid = validationService.isValid(user); // == true
+
+    new Handler().postDelayed(new Runnable() {
+      @Override public void run() {
+        // Check if the user is valid after 6 seconds
+        boolean isValid = validationService.isValid(user); // == false
+      }
+    }, 6000 /*6 seconds*/);
+    ```
 
 Add it to your project
 -------------------------------
