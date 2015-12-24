@@ -66,7 +66,7 @@ Feel free to add any useful feature to the library, we will be glad to improve i
 License
 -------
 
-    Copyright 2015 MobileJazz
+    Copyright 2015 Mobile Jazz SL
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
