@@ -1,15 +1,26 @@
 package com.mobilejazz.vastra;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import com.mobilejazz.library.ValidationService;
+import com.mobilejazz.library.ValidationServiceManager;
+import com.mobilejazz.library.strategies.reachability.ReachabilityValidationStrategy;
+import com.mobilejazz.library.strategies.timestamp.TimestampValidationStrategy;
+import com.mobilejazz.vastra.model.User;
+import java.util.Arrays;
+import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
+
+  private static final String TAG = "Vastra";
 
   @Override protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -25,6 +36,30 @@ public class MainActivity extends AppCompatActivity {
             .show();
       }
     });
+
+    final ValidationService validationService = new ValidationServiceManager();
+    validationService.initialize(
+        Arrays.asList(new ReachabilityValidationStrategy(this.getApplicationContext()),
+            new TimestampValidationStrategy()));
+
+    final User user = new User();
+    user.setId(1);
+    user.setName("Jose Luis Franconetti Olmedo");
+    user.setLastUpdate(new Date(System.currentTimeMillis()));
+
+    boolean isValid = validationService.isValid(user);
+
+    Log.d(TAG, "onCreate: User: " + user.toString());
+
+    Log.d(TAG, "onCreate: User is valid: " + isValid);
+
+    new Handler().postDelayed(new Runnable() {
+      @Override public void run() {
+        boolean isValid = validationService.isValid(user);
+
+        Log.d(TAG, "onCreate: User is valid after 6 seconds: " + isValid);
+      }
+    }, 6000);
   }
 
   @Override public boolean onCreateOptionsMenu(Menu menu) {
