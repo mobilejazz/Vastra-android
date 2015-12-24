@@ -7,16 +7,18 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import com.mobilejazz.library.ValidationService;
-import com.mobilejazz.library.ValidationServiceManager;
+import com.mobilejazz.library.Vastra;
+import com.mobilejazz.library.strategies.ValidationStrategy;
 import com.mobilejazz.library.strategies.reachability.ReachabilityValidationStrategy;
 import com.mobilejazz.library.strategies.timestamp.TimestampValidationStrategy;
 import com.mobilejazz.vastra.model.User;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -37,10 +39,13 @@ public class MainActivity extends AppCompatActivity {
       }
     });
 
-    final ValidationService validationService = new ValidationServiceManager();
-    validationService.initialize(
+    List<ValidationStrategy> strategies =
         Arrays.asList(new ReachabilityValidationStrategy(this.getApplicationContext()),
-            new TimestampValidationStrategy()));
+            new TimestampValidationStrategy());
+
+    Vastra vastra = Vastra.with(strategies).build();
+
+    final ValidationService validationService = vastra.validationService();
 
     final User user = new User();
     user.setId(1);
