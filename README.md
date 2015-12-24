@@ -1,12 +1,12 @@
 Vastra
 =============
 
-To be defined
+Vastra is a library that helps to validate objects applying different strategy validations.
 
 Usage
 -----
 
-To be defined
+See MainActivity class in the sample module.
 
 Add it to your project
 -------------------------------
