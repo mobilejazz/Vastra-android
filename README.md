@@ -127,7 +127,7 @@ Add Vastra dependency to your build.gradle file
 
 ```xml
 dependencies {
-  compile 'com.github.mobilejazz:vastra:1.0'
+  compile 'com.github.mobilejazz:vastra-android:1.0.1'
 }
 ```
 
