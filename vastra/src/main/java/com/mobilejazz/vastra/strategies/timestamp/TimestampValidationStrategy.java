@@ -35,8 +35,7 @@ public class TimestampValidationStrategy implements ValidationStrategy {
       return ValidationStrategyResult.UNKNOWN;
     }
 
-    //long diff = dataSource.lastUpdate().getTime() - System.currentTimeMillis();
-    long diff = System.currentTimeMillis() - dataSource.lastUpdate().getTime();
+    long diff = dataSource.lastUpdate().getTime() - System.currentTimeMillis();
 
     return diff < dataSource.expiryTime() ? ValidationStrategyResult.VALID
         : ValidationStrategyResult.INVALID;

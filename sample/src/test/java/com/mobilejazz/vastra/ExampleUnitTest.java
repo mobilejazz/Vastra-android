@@ -1,4 +1,4 @@
-package com.mobilejazz.sample;
+package com.mobilejazz.vastra;
 
 import org.junit.Test;
 
