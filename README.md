@@ -127,7 +127,7 @@ Add Vastra dependency to your build.gradle file
 
 ```xml
 dependencies {
-  compile 'com.github.mobilejazz:vastra-android:1.0.1'
+  compile 'com.github.mobilejazz:vastra-android:1.0.2'
 }
 ```
 
@@ -139,7 +139,7 @@ Feel free to add any useful feature to the library, we will be glad to improve i
 License
 -------
 
-    Copyright 2015 MobileJazz
+    Copyright 2015 Mobile Jazz
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
