@@ -45,11 +45,12 @@ advancedVersioning {
   nameOptions {
     versionMajor 1
     versionMinor 0
-    versionPatch 1
+    versionPatch 2
     //versionBuild 0
   }
 }
 
 dependencies {
   testCompile 'junit:junit:4.12'
+  testCompile 'org.assertj:assertj-core:1.7.1'
 }
