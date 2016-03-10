@@ -1,9 +1,32 @@
+![Mobile Jazz Vastra](https://raw.githubusercontent.com/mobilejazz/metadata/master/images/banners/mobile-jazz-vastra-android-banner.png)
+
 Vastra
 =============
 
 Vastra is a library that helps to validate objects applying different strategy validations.
 
-## How To
+## How To Get Vastra
+
+Add this in your root `build.gradle` file (**not** your module `build.gradle` file):
+
+```gradle
+allprojects {
+	repositories {
+		...
+		maven { url "https://jitpack.io" }
+	}
+}
+```
+
+Add Vastra dependency to your `build.gradle` file (in your module)
+
+```xml
+dependencies {
+  compile 'com.github.mobilejazz:vastra-android:1.0.2'
+}
+```
+
+## Using Vastra
 
 *For a working implementation of this project see the `sample/` folder.*
 
@@ -120,32 +143,19 @@ new Handler().postDelayed(new Runnable() {
 
 Assuming we have a valid internet connection, this user would pass the validation test. However, if we run this code 5 seconds later, this same user would fail validation as the timestamp strategy would invalidate it.
 
-Add it to your project
--------------------------------
+## Project Maintainer
 
-Add Vastra dependency to your build.gradle file
+This open source project is maintained by [Jose Luis Franconetti](https://github.com/joselufo).
 
-```xml
-dependencies {
-  compile 'com.github.mobilejazz:vastra-android:1.0.2'
-}
-```
+## License
 
-Do you want to contribute?
-------------
-
-Feel free to add any useful feature to the library, we will be glad to improve it :)
-
-License
--------
-
-    Copyright 2015 Mobile Jazz
+    Copyright 2016 MobileJazz
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
     You may obtain a copy of the License at
 
-       http://www.apache.org/licenses/LICENSE-2.0
+      http://www.apache.org/licenses/LICENSE-2.0
 
     Unless required by applicable law or agreed to in writing, software
     distributed under the License is distributed on an "AS IS" BASIS,
