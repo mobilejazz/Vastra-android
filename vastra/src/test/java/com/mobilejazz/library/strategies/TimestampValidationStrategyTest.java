@@ -22,12 +22,11 @@ import com.mobilejazz.vastra.strategies.DefaultValidationStrategy;
 import com.mobilejazz.vastra.strategies.ValidationStrategy;
 import com.mobilejazz.vastra.strategies.timestamp.TimestampValidationStrategy;
 import com.mobilejazz.vastra.strategies.timestamp.TimestampValidationStrategyDataSource;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
 import org.assertj.core.api.Assertions;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.util.*;
 
 public class TimestampValidationStrategyTest {
 
@@ -79,7 +78,7 @@ public class TimestampValidationStrategyTest {
   }
 
   @Test public void shouldRespondValidObjectWithExpiryTimeInDays() throws Exception {
-    User user = fakeUserWithLastUpdate(Type.DAYS, 3);
+    User user = fakeUserWithLastUpdate(Type.DAYS, 1);
 
     boolean isValid = validationService.isValid(user);
 
@@ -111,15 +110,15 @@ public class TimestampValidationStrategyTest {
     switch (type) {
       case SECONDS:
         expiryTime = SECOND * 5;
-        lastUpdate = System.currentTimeMillis() + time * SECOND;
+        lastUpdate = System.currentTimeMillis() - time * SECOND;
         break;
       case HOURS:
         expiryTime = HOUR * 24;
-        lastUpdate = System.currentTimeMillis() + time * HOUR;
+        lastUpdate = System.currentTimeMillis() - time * HOUR;
         break;
       case DAYS:
         expiryTime = DAY * 24;
-        lastUpdate = System.currentTimeMillis() + time * DAY;
+        lastUpdate = System.currentTimeMillis() - time * DAY;
         break;
     }
     user.setExpiryTime(expiryTime);

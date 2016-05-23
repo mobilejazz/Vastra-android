@@ -14,30 +14,36 @@
  * limitations under the License.
  */
 
-package com.mobilejazz.vastra.strategies.timestamp;
+package com.mobilejazz.vastra.strategies.invalidation;
 
 import com.mobilejazz.vastra.ValidationStrategyDataSource;
 import com.mobilejazz.vastra.strategies.ValidationStrategy;
 import com.mobilejazz.vastra.strategies.ValidationStrategyResult;
 
-public class TimestampValidationStrategy implements ValidationStrategy {
+/**
+ * Object invalidation strategy
+ *
+ * The strategy implements the following approach:
+ *
+ *    - If the object is invalid, returns `ValidationStrategyResult.INVALID`.
+ *    - Otherwise returns `ValidationStrategyResult.UNKNOWN`.
+ **/
+public class InvalidationStrategy implements ValidationStrategy {
+
   @Override
   public <T extends ValidationStrategyDataSource> ValidationStrategyResult isValid(T object) {
-    TimestampValidationStrategyDataSource dataSource;
+    InvalidationStrategyDataSource dataSource;
 
-    if (object instanceof TimestampValidationStrategyDataSource) {
-      dataSource = (TimestampValidationStrategyDataSource) object;
+    if (object instanceof InvalidationStrategyDataSource) {
+      dataSource = (InvalidationStrategyDataSource) object;
     } else {
-      throw new IllegalArgumentException("object != TimestampValidationStrategyDataSource");
+      throw new IllegalArgumentException("object != InvalidationStrategyDataSource");
     }
 
-    if (dataSource.lastUpdate() == null) {
-      return ValidationStrategyResult.UNKNOWN;
+    if (dataSource.isObjectInvalid()) {
+      return ValidationStrategyResult.INVALID;
     }
 
-    long diff = System.currentTimeMillis() - dataSource.lastUpdate().getTime();
-
-    return diff > dataSource.expiryTime() ? ValidationStrategyResult.INVALID
-        : ValidationStrategyResult.VALID;
+    return ValidationStrategyResult.UNKNOWN;
   }
 }
