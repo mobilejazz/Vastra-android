@@ -13,7 +13,7 @@ Add this in your root `build.gradle` file (**not** your module `build.gradle` fi
 allprojects {
 	repositories {
 		...
-		maven { url "https://jitpack.io" }
+		maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
 	}
 }
 ```
@@ -22,7 +22,7 @@ Add Vastra dependency to your `build.gradle` file (in your module)
 
 ```xml
 dependencies {
-  compile 'com.github.mobilejazz:vastra-android:1.0.2'
+  compile 'com.mobilejazz.vastra:library:1.1.0-SNAPSHOT'
 }
 ```
 
