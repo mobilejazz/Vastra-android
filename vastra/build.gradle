@@ -5,6 +5,7 @@ apply plugin: 'com.github.dcendents.android-maven'
 apply plugin: 'org.moallemi.advanced-build-version'
 apply from: '../gradle/config/plugins/jacoco.gradle'
 apply from: '../gradle/config/plugins/lint.gradle'
+apply from: '../gradle-mvn-push.gradle'
 
 group = 'com.github.mobilejazz'
 
