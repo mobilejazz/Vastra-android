@@ -22,7 +22,7 @@ Add Vastra dependency to your `build.gradle` file (in your module)
 
 ```xml
 dependencies {
-  compile 'com.mobilejazz.vastra:library:1.1.0-SNAPSHOT'
+  compile 'com.mobilejazz.vastra:library:1.1.1-SNAPSHOT'
 }
 ```
 
